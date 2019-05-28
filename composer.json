@@ -18,11 +18,6 @@
         "psr-4" : {
             "Meteopark\\" : "src/"
         }
-    },
-    "autoload-dev": {
-        "psr-4": {
-            "Meteopark\\Test\\": "tests/"
-        },
-        "classmap": ["build/"]
     }
+
 }
