@@ -11,13 +11,19 @@
         }
     ],
     "minimum-stability": "stable",
-    "require": {
-        "meteopark/ncloud-object-storage" : "~0.0.0"
-    },
+
+
+
     "autoload": {
         "psr-4" : {
             "Meteopark\\" : "src/"
         }
-    }
+    },
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "../ncloud-object-storage"
+        }
+    ]
 
 }
