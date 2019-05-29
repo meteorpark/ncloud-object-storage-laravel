@@ -18,7 +18,8 @@
     ],
     "minimum-stability": "stable",
     "require": {
-        "meteopark/ncloud-object-storage": "dev-master#v0.0.5@beta",
+        "meteopark/ncloud-object-storage": "v0.0.6@beta",
+        "acme/foo": "@dev",
         "php": "^7.1.21",
         "laravel/framework": "^5.6",
         "league/flysystem-aws-s3-v3": "^1.0"

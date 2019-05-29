@@ -13,6 +13,9 @@ use Illuminate\Support\Facades\Storage;
  */
 class NcloudFileUpload
 {
+    /**
+     *
+     */
     const STR_RANDOM_COUNT = 30;
 
     /**
@@ -41,25 +44,43 @@ class NcloudFileUpload
         $this->arrowExtensions  = $extensions;
     }
 
-
     /**
-     * @param string $files
+     * @param array $files
      * @return array
      */
-    public function uploadToStorage(string $files)
+    public function move($files)
     {
         $upload_files = [];
 
-        foreach ($files as $file) {
-            if ($this->arrowExtension($file->getClientOriginalExtension()) !== false) {
-                $upload_files[] = $this->move($this->moveFolder, $file);
-            } else {
-                $upload_files[] = "File Not Allowed";
+        if (!is_null($files)) {
+            foreach ($files as $f) {
+                if ($this->arrowExtension($f->getClientOriginalExtension()) !== false) {
+                    $upload_files[] = $this->receive($f);
+                }
             }
         }
-
-
         return $upload_files;
+    }
+
+
+    /**
+     * @param UploadedFile $file
+     * @return array
+     */
+    public function receive(UploadedFile $file)
+    {
+        $receive                = [];
+        $receive['org_name']    = $file->getClientOriginalName();
+        $receive['path']        = $this->uploadToStorage($this->moveFolder, $file);
+        $receive['mime_type']   = $file->getClientMimeType();
+
+        if (strpos($receive['mime_type'], "image") !== false) {
+            $data = getimagesize($file);
+            $receive['image']['width']  = $data[0];
+            $receive['image']['height'] = $data[1];
+        }
+
+        return $receive;
     }
 
 
@@ -68,7 +89,7 @@ class NcloudFileUpload
      * @param UploadedFile $file
      * @return string
      */
-    public function move(string $moveFolder, UploadedFile $file)
+    public function uploadToStorage(string $moveFolder, UploadedFile $file)
     {
         $filePath = $moveFolder . '/' . $this->setFileName($file);
         Storage::disk('ncloud')->put($filePath, file_get_contents($file));
