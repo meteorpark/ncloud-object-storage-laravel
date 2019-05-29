@@ -16,14 +16,6 @@
             "homepage": "https://github.com/meteopark"
         }
     ],
-    "extra": {
-
-        "laravel": {
-            "providers": [
-                "Meteopark\\Providers\\NcloudObjectStorageProvider"
-            ]
-        }
-    },
     "minimum-stability": "stable",
     "require": {
         "php": "^7.1.21",
