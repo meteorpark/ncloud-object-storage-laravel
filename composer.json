@@ -2,7 +2,13 @@
     "name": "meteopark/ncloud-object-storage",
     "homepage": "http://blog.meteopark.dev",
     "description": "It is a package that can easily upload files through Object Storage which is a service provided by NBP.",
-    "keywords": ["nbp","cloud","sdk","s3","aws"],
+    "keywords": ["nbp","cloud","sdk","s3","aws", "laravel", "framework"],
+    "license": "MIT",
+    "type": "library",
+    "support": {
+        "issues": "https://github.com/meteopark/ncloud-object-storage/issues",
+        "source": "https://github.com/meteopark/ncloud-object-storage"
+    },
     "authors": [
         {
             "name": "meteopark",
@@ -12,18 +18,17 @@
     ],
     "minimum-stability": "stable",
     "require": {
-        "meteopark/ncloud-object-storage": "dev-develop"
+        "php": "^7.1.21"
     },
     "autoload": {
         "psr-4" : {
             "Meteopark\\" : "src/"
         }
     },
-    "repositories": [
-        {
-            "type": "vcs",
-            "url": "../ncloud-object-storage"
+    "autoload-dev": {
+        "psr-4": {
+            "Meteopark\\Tests\\": "tests/"
         }
-    ]
+    }
 
 }
