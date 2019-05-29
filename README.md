@@ -1,4 +1,4 @@
-
+작성중
 
 https://packagist.org/packages/league/flysystem-aws-s3-v3
 ------
@@ -13,7 +13,7 @@ https://packagist.org/packages/league/flysystem-aws-s3-v3
 
 It is a package that can easily upload files through Object Storage which is a service provided by Ncloud.
 
-Ncloud에서 제공하는 서비스 인 Object Storage를 통해 파일을 쉽게 업로드 할 수있는 패키지입니다.
+Ncloud에서 제공하는 서비스 인 Object Storage를 통해 파일을 쉽게 업로드 할 수 있는 패키지입니다.
 
 ## Installation
 
