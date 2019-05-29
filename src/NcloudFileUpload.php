@@ -4,42 +4,100 @@
 namespace Meteopark;
 
 use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
 
+/**
+ * Class NcloudFileUpload
+ * @package Meteopark
+ */
 class NcloudFileUpload
 {
 
-    private $extensions = [];
+    const STR_RANDOM_COUNT = 30;
 
-    public function __construct(array $extensions = [])
+    /**
+     * @var string
+     */
+    protected $moveFolder = "";
+    /**
+     * @var string
+     */
+    protected $format = "";
+    /**
+     * @var array
+     */
+    protected $arrowExtensions = ['png', 'jpeg'];
+
+    /**
+     * NcloudFileUpload constructor.
+     * @param string $format
+     * @param string $moveFolder
+     * @param array $extensions
+     */
+    public function __construct($format = "", $moveFolder = "", array $extensions = ['png', 'jpeg'])
     {
-        $this->extensions = $extensions;
+        $this->moveFolder       = $moveFolder;
+        $this->format           = $format;
+        $this->arrowExtensions  = $extensions;
     }
 
     /**
-     * @param string $moveFolder
-     * @param object $file
-     * @return string|null
+     * @param UploadedFile $files
+     * @return array
      */
-    public function uploadToStorage(string $moveFolder, UploadedFile $file)
+    public function uploadToStorage(UploadedFile $files)
     {
-        $filePath = "File Not Allowed";
+        $upload_files = [];
 
-        if ($this->arrowExtension($file->getClientOriginalExtension())) {
-
-            $filePath = $moveFolder . '/' . time() . $file->getClientOriginalName();
-            Storage::disk('ncloud')->put($filePath, file_get_contents($file));
+        foreach ($files as $file) {
+            if ($this->arrowExtension($file->getClientOriginalExtension())) {
+                $upload_files[] = $this->move($this->moveFolder, $file);
+            } else {
+                $upload_files[] = "File Not Allowed";
+            }
         }
+
+        return $upload_files;
+    }
+
+
+    /**
+     * @param string $moveFolder
+     * @param UploadedFile $file
+     * @return string
+     */
+    public function move(string $moveFolder, UploadedFile $file)
+    {
+        $filePath = $moveFolder . '/' . $this->setFileName($file);
+        Storage::disk('ncloud')->put($filePath, file_get_contents($file));
 
         return $filePath;
     }
 
+
     /**
      * @param string $extension
-     * @return bool
+     * @return mixed
      */
-    private function arrowExtension(string $extension)
+    public function arrowExtension(string $extension)
     {
-        return collect($this->extensions)->search(strtolower($extension));
+        return collect($this->arrowExtensions)->search(strtolower($extension));
+    }
+
+
+    /**
+     * @param UploadedFile $file
+     * @return string
+     */
+    public function setFileName(UploadedFile $file)
+    {
+        if (empty($this->format)) {
+            $fileName = Str::random(self::STR_RANDOM_COUNT);
+        } else {
+            $fileName = $this->format;
+        }
+
+        return $fileName .=  ".".$file->getClientMimeType();
     }
 }
