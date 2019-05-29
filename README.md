@@ -11,7 +11,9 @@ https://packagist.org/packages/league/flysystem-aws-s3-v3
 <!-- [![Latest Version on Packagist](https://img.shields.io/packagist/v/seungmun/laravel-sens.svg?style=flat-square)](https://packagist.org/packages/seungmun/laravel-sens) -->
 <!-- [![Total Downloads](https://img.shields.io/packagist/dt/seungmun/laravel-sens.svg?style=flat-square)](https://packagist.org/packages/seungmun/laravel-sens) -->
 
-It is a package that can easily upload files through Object Storage which is a service provided by NBP.
+It is a package that can easily upload files through Object Storage which is a service provided by Ncloud.
+
+Ncloud에서 제공하는 서비스 인 Object Storage를 통해 파일을 쉽게 업로드 할 수있는 패키지입니다.
 
 ## Installation
 
