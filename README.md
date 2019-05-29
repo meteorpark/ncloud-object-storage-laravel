@@ -1,8 +1,3 @@
-작성중
-
-https://packagist.org/packages/league/flysystem-aws-s3-v3
-------
-
 
 
 
@@ -13,12 +8,7 @@ https://packagist.org/packages/league/flysystem-aws-s3-v3
 
 It is a package that can easily upload files through Object Storage which is a service provided by Ncloud.
 
-Ncloud에서 제공하는 서비스 인 Object Storage를 통해 파일을 쉽게 업로드 할 수 있는 패키지입니다.
-
 ## Installation
-
-You can install the package via composer:
-
 ``` bash
 composer require meteopark/ncloud-object-storage
 ```
@@ -27,6 +17,19 @@ The package will automatically register itself.
 
 You can publish the config with:
 ```bash
+    ...
+    
+'disks' => [
+    'ncloud' => [
+        'driver'    => 's3',
+        'region'    => 'kr-standard',
+        'endpoint'  => 'https://kr.object.ncloudstorage.com',
+        'version'   => 'latest',
+        'key'       => env('NCLOUD_ACCESS_KEY_ID'),
+        'secret'    => env('NCLOUD_SECRET_ACCESS_KEY'),
+        'bucket'    => env('NCLOUD_BUCKET'),
+    ]
+]
 ```
 
 Also, you can use it without publish the config file can be used simply by adding environment variables with:

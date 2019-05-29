@@ -7,38 +7,46 @@ use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
 
+
 /**
- * Class NcloudFileUpload
+ * Class NcloudObjectStorage
  * @package Meteopark
  */
-class NcloudFileUpload
+class NcloudObjectStorage
 {
     /**
      *
      */
     const STR_RANDOM_COUNT = 30;
-
     /**
      * @var string
      */
-    protected $moveFolder = "";
+    private $moveFolder = "";
     /**
      * @var string
      */
-    protected $format = "";
+    private $format = "";
     /**
      * @var array
      */
-    protected $arrowExtensions = ['png', 'jpeg'];
+    private $arrowExtensions;
+    /**
+     * Disk name to use
+     * @var string
+     */
+    private $disk = "";
+
 
     /**
-     * NcloudFileUpload constructor.
+     * NcloudObjectStorage constructor.
+     * @param string $disk
      * @param string $format
      * @param string $moveFolder
      * @param array $extensions
      */
-    public function __construct($format = "", $moveFolder = "", array $extensions = ['png', 'jpeg'])
+    public function __construct(string $disk = "ncloud", string $format = "", string $moveFolder = "", array $extensions = ['png', 'jpeg'])
     {
+        $this->disk             = $disk;
         $this->moveFolder       = $moveFolder;
         $this->format           = $format;
         $this->arrowExtensions  = $extensions;
@@ -71,7 +79,7 @@ class NcloudFileUpload
     {
         $receive                = [];
         $receive['org_name']    = $file->getClientOriginalName();
-        $receive['path']        = $this->uploadToStorage($this->moveFolder, $file);
+        $receive['path']        = $this->uploadToStorage($file);
         $receive['mime_type']   = $file->getClientMimeType();
 
         if (strpos($receive['mime_type'], "image") !== false) {
@@ -85,14 +93,13 @@ class NcloudFileUpload
 
 
     /**
-     * @param string $moveFolder
      * @param UploadedFile $file
      * @return string
      */
-    public function uploadToStorage(string $moveFolder, UploadedFile $file)
+    public function uploadToStorage(UploadedFile $file)
     {
-        $filePath = $moveFolder . '/' . $this->setFileName($file);
-        Storage::disk('ncloud')->put($filePath, file_get_contents($file));
+        $filePath = $this->moveFolder . '/' . $this->setFileName($file);
+        Storage::disk($this->disk)->put($filePath, file_get_contents($file));
 
         return $filePath;
     }
