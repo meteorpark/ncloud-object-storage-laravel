@@ -13,7 +13,6 @@ use Illuminate\Support\Facades\Storage;
  */
 class NcloudFileUpload
 {
-
     const STR_RANDOM_COUNT = 30;
 
     /**
@@ -51,12 +50,13 @@ class NcloudFileUpload
         $upload_files = [];
 
         foreach ($files as $file) {
-            if ($this->arrowExtension($file->getClientOriginalExtension())) {
+            if ($this->arrowExtension($file->getClientOriginalExtension()) !== false) {
                 $upload_files[] = $this->move($this->moveFolder, $file);
             } else {
                 $upload_files[] = "File Not Allowed";
             }
         }
+
 
         return $upload_files;
     }
@@ -82,7 +82,7 @@ class NcloudFileUpload
      */
     public function arrowExtension(string $extension)
     {
-        return collect($this->arrowExtensions)->search(strtolower($extension));
+        return collect($this->arrowExtensions)->search(strtolower($extension), true);
     }
 
 
@@ -98,6 +98,6 @@ class NcloudFileUpload
             $fileName = $this->format;
         }
 
-        return $fileName .=  ".".$file->getClientMimeType();
+        return $fileName .=  ".".$file->getClientOriginalExtension();
     }
 }
