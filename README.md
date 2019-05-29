@@ -25,7 +25,6 @@ The package will automatically register itself.
 
 You can publish the config with:
 ```bash
-php artisan vendor:publish --provider="Seungmun\Sens\SensServiceProvider" --tag="config"
 ```
 
 Also, you can use it without publish the config file can be used simply by adding environment variables with:
