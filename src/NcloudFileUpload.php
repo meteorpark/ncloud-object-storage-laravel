@@ -41,11 +41,12 @@ class NcloudFileUpload
         $this->arrowExtensions  = $extensions;
     }
 
+
     /**
-     * @param UploadedFile $files
+     * @param string $files
      * @return array
      */
-    public function uploadToStorage(UploadedFile $files)
+    public function uploadToStorage(string $files)
     {
         $upload_files = [];
 
