@@ -11,12 +11,11 @@ class NcloudObjectStorageProvider extends ServiceProvider
     {
     }
 
-
     public function boot()
     {
         $this->publishes([
             __DIR__ . '/../../config/ncloud-object-storage-config.php' => config_path('ncloud-object-storage-config.php')
-            
+
         ], 'config');
     }
 }
