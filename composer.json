@@ -11,9 +11,9 @@
         }
     ],
     "minimum-stability": "stable",
-
-
-
+    "require": {
+        "meteopark/ncloud-object-storage": "dev-develop"
+    },
     "autoload": {
         "psr-4" : {
             "Meteopark\\" : "src/"
