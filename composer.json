@@ -21,7 +21,7 @@
         "laravel": {
             "providers": [
                 "Meteopark\\Providers\\NcloudObjectStorageProvider"
-            ],
+            ]
         }
     },
     "minimum-stability": "stable",
@@ -39,5 +39,4 @@
             "Meteopark\\Tests\\": "tests/"
         }
     }
-
 }
