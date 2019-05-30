@@ -1,6 +1,3 @@
-
-
-
 # Ncloud Object Storage for Laravel
 
 <!-- [![Latest Version on Packagist](https://img.shields.io/packagist/v/seungmun/laravel-sens.svg?style=flat-square)](https://packagist.org/packages/seungmun/laravel-sens) -->
@@ -10,15 +7,16 @@ It is a package that can easily upload files through Object Storage which is a s
 
 ## Installation
 ``` bash
-composer require meteopark/ncloud-object-storage
+composer require meteopark/ncloud-object-storage-laravel
 ```
 
-The package will automatically register itself.
+Set the `filesystems.php`
 
-You can publish the config with:
 ```bash
-    ...
-    
+<?php
+
+...
+
 'disks' => [
     'ncloud' => [
         'driver'    => 's3',
@@ -32,7 +30,8 @@ You can publish the config with:
 ]
 ```
 
-Also, you can use it without publish the config file can be used simply by adding environment variables with:
+And add environment variables.
+
 
 ```bash
 NCLOUD_ACCESS_KEY_ID=your-ncloud-access-key-id
@@ -40,11 +39,13 @@ NCLOUD_SECRET_ACCESS_KEY=your-ncloud-secret-access-key
 NCLOUD_BUCKET=your-ncloud-bucket
 ```
 
-## Usage
+## Basic Usage
 
-test abcd
 ```php
+
 <?php
+
+use
 
 ```
 
