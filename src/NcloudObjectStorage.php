@@ -7,10 +7,9 @@ use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
 
-
 /**
  * Class NcloudObjectStorage
- * @package Meteopark
+ * @package Meteopark\NcloudObjectStorage
  */
 class NcloudObjectStorage
 {
@@ -53,7 +52,7 @@ class NcloudObjectStorage
     }
 
     /**
-     * @param array $files
+     * @param $files
      * @return array
      */
     public function move($files)
@@ -96,7 +95,7 @@ class NcloudObjectStorage
      * @param UploadedFile $file
      * @return string
      */
-    public function uploadToStorage(UploadedFile $file)
+    public function uploadToStorage(UploadedFile $file): string
     {
         $filePath = $this->moveFolder . '/' . $this->setFileName($file);
         Storage::disk($this->disk)->put($filePath, file_get_contents($file));
@@ -119,7 +118,7 @@ class NcloudObjectStorage
      * @param UploadedFile $file
      * @return string
      */
-    public function setFileName(UploadedFile $file)
+    public function setFileName(UploadedFile $file): string
     {
         if (empty($this->format)) {
             $fileName = Str::random(self::STR_RANDOM_COUNT);
