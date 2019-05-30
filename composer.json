@@ -1,5 +1,5 @@
 {
-    "name": "meteopark/ncloud-object-storage",
+    "name": "meteopark/ncloud-object-storage-laravel",
     "homepage": "http://blog.meteopark.dev",
     "description": "It is a package that can easily upload files through Object Storage which is a service provided by NBP.",
     "keywords": ["nbp","cloud","sdk","s3","aws", "laravel", "framework", "ncloudobjectstorage"],
