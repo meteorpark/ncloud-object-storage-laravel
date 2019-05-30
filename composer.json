@@ -26,10 +26,5 @@
         "psr-4" : {
             "Meteopark\\NcloudObjectStorage\\" : "src/"
         }
-    },
-    "autoload-dev": {
-        "psr-4": {
-            "Meteopark\\NcloudObjectStorage\\Tests\\": "tests/"
-        }
     }
 }
