@@ -8,10 +8,10 @@ use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
 
 /**
- * Class NcloudObjectStorage
- * @package Meteopark\NcloudObjectStorage
+ * Class NOSFileUpload
+ * @package Meteopark\NOSFileUpload
  */
-class NcloudObjectStorage
+class NOSFileUpload
 {
     /**
      *
@@ -37,7 +37,7 @@ class NcloudObjectStorage
 
 
     /**
-     * NcloudObjectStorage constructor.
+     * NOSFileUpload constructor.
      * @param string $disk
      * @param string $format
      * @param string $moveFolder
