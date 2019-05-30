@@ -6,8 +6,8 @@
     "license": "MIT",
     "type": "library",
     "support": {
-        "issues": "https://github.com/meteopark/ncloud-object-storage/issues",
-        "source": "https://github.com/meteopark/ncloud-object-storage"
+        "issues": "https://github.com/meteopark/ncloud-object-storage-laravel/issues",
+        "source": "https://github.com/meteopark/ncloud-object-storage-laravel"
     },
     "authors": [
         {
