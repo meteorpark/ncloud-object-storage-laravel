@@ -78,7 +78,7 @@ Result
      },
      {
           "org_name": "test2.pdf",
-          "path": "afolder/bfolder/1559182454.png",
+          "path": "afolder/bfolder/1559182454.pdf",
           "mime_type": "application/pdf",
      }
  ]
