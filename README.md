@@ -42,15 +42,44 @@ NCLOUD_BUCKET=your-ncloud-bucket
 
 <?php
 
-use
+namespace App\Http\Controllers;
 
-```
+use App\Http\Controllers\Controller;
+use Meteopark\NcloudObjectStorage\NOSFileUpload;
+
+class FileUploadController extends Controller
+{
+
+    public function file(Request $request)
+    {
+        // $request->files has array ( = files[] )
+
+        $files = (new NOSFileUpload(
+                        time(), // default Str::Random(30)
+                        "afolder/bfolder",
+                        ['png','pdf']
+                     ))->move($request->files);
+    }
+}
+ ```
+
+Result
 
 ```php
-```
-
-
-
-## Features
-
-
+ [
+     {
+         "org_name": "KakaoTalk_Photo_2019-05-20-18-13-15.png",
+         "path": "afolder/bfolder/1559182454.png",
+         "mime_type": "image/png",
+         "image": {
+             "width": 296,
+             "height": 40
+         }
+     },
+     {
+          "org_name": "test2.pdf",
+          "path": "afolder/bfolder/1559182454.png",
+          "mime_type": "application/pdf",
+     }
+ ]
+ ```

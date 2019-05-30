@@ -18,14 +18,17 @@ class NOSFileUpload
      */
     const STR_RANDOM_COUNT = 30;
     /**
+     * Folder in which to save the file
      * @var string
      */
     private $moveFolder = "";
     /**
+     * File name to convert
      * @var string
      */
     private $format = "";
     /**
+     * Accessible extensions
      * @var array
      */
     private $arrowExtensions;
@@ -38,12 +41,12 @@ class NOSFileUpload
 
     /**
      * NOSFileUpload constructor.
-     * @param string $disk
      * @param string $format
      * @param string $moveFolder
      * @param array $extensions
+     * @param string $disk
      */
-    public function __construct(string $disk = "ncloud", string $format = "", string $moveFolder = "", array $extensions = ['png', 'jpeg'])
+    public function __construct(string $format = "", string $moveFolder = "", array $extensions = ['png', 'jpeg'], string $disk = "ncloud")
     {
         $this->disk             = $disk;
         $this->moveFolder       = $moveFolder;
