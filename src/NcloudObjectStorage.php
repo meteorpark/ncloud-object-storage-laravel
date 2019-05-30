@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Meteopark;
+namespace Meteopark\NcloudObjectStorage;
 
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Str;
