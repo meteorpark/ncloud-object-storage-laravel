@@ -1,8 +1,5 @@
 # Ncloud Object Storage for Laravel
 
-<!-- [![Latest Version on Packagist](https://img.shields.io/packagist/v/seungmun/laravel-sens.svg?style=flat-square)](https://packagist.org/packages/seungmun/laravel-sens) -->
-<!-- [![Total Downloads](https://img.shields.io/packagist/dt/seungmun/laravel-sens.svg?style=flat-square)](https://packagist.org/packages/seungmun/laravel-sens) -->
-
 It is a package that can easily upload files through Object Storage which is a service provided by Ncloud.
 
 ## Installation
