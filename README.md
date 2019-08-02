@@ -1,4 +1,4 @@
-# Ncloud Object Storage for Laravel
+[![Total Downloads](https://poser.pugx.org/meteopark/ncloud-object-storage-laravel/downloads)](https://packagist.org/packages/meteopark/ncloud-object-storage-laravel)
 
 It is a package that can easily upload files through Object Storage which is a service provided by Ncloud.
 
