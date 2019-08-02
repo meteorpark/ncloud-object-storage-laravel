@@ -38,6 +38,11 @@ class NOSFileUpload
      */
     private $disk = "";
 
+    /**
+     * @var bool
+     */
+    private $is_public = false;
+
 
     /**
      * NOSFileUpload constructor.
@@ -45,13 +50,15 @@ class NOSFileUpload
      * @param string $moveFolder
      * @param array $extensions
      * @param string $disk
+     * @param bool $is_public
      */
-    public function __construct(string $format = "", string $moveFolder = "", array $extensions = ['png', 'jpeg'], string $disk = "ncloud")
+    public function __construct(string $format = "", string $moveFolder = "", array $extensions = ['png', 'jpeg'], string $disk = "ncloud", bool $is_public = true)
     {
-        $this->disk             = $disk;
-        $this->moveFolder       = $moveFolder;
-        $this->format           = $format;
-        $this->arrowExtensions  = $extensions;
+        $this->disk = $disk;
+        $this->moveFolder = $moveFolder;
+        $this->format = $format;
+        $this->arrowExtensions = $extensions;
+        $this->is_public = $is_public;
     }
 
     /**
@@ -79,14 +86,14 @@ class NOSFileUpload
      */
     public function receive(UploadedFile $file)
     {
-        $receive                = [];
-        $receive['org_name']    = $file->getClientOriginalName();
-        $receive['path']        = $this->uploadToStorage($file);
-        $receive['mime_type']   = $file->getClientMimeType();
+        $receive = [];
+        $receive['org_name'] = $file->getClientOriginalName();
+        $receive['path'] = $this->uploadToStorage($file);
+        $receive['mime_type'] = $file->getClientMimeType();
 
         if (strpos($receive['mime_type'], "image") !== false) {
             $data = getimagesize($file);
-            $receive['image']['width']  = $data[0];
+            $receive['image']['width'] = $data[0];
             $receive['image']['height'] = $data[1];
         }
 
@@ -101,7 +108,7 @@ class NOSFileUpload
     public function uploadToStorage(UploadedFile $file): string
     {
         $filePath = $this->moveFolder . '/' . $this->setFileName($file);
-        Storage::disk($this->disk)->put($filePath, file_get_contents($file));
+        Storage::disk($this->disk)->put($filePath, file_get_contents($file), $this->is_public ? 'public' : '');
 
         return $filePath;
     }
@@ -129,6 +136,6 @@ class NOSFileUpload
             $fileName = $this->format;
         }
 
-        return $fileName .=  ".".$file->getClientOriginalExtension();
+        return $fileName .= "." . $file->getClientOriginalExtension();
     }
 }
